@@ -13,5 +13,22 @@ int main(){
   
   println("(2) i = {}, x = {}", i, x);
 
+  i = 1;
+  x = 3.5;
+
+  i = static_cast<int>(1.14); // explicit cast
+  x = static_cast<double>(3); // explicit cast
+  println("(3) i = {}, x = {}", i, x);
+
+  int j = {static_cast<int>(3.14)};  // uniform initialization
+  int k = {42};                      // equivalente a int k{42};
+
+  println("(4) j = {}, k = {}", j, k);
+
+  // narrowing cast attempt
+  j = 3.14;
+  k = 42.195;
+  println("(5) j = {}, k = {}", j, k); // no permite el casteo
+
   return 0;
 }
