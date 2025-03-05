@@ -1,7 +1,7 @@
 # Compilador y flags
 CXX := g++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Wshadow -Wconversion -Wfatal-errors -pedantic
-CXXFLAGS2 := -std=c++20 -Wall -Wextra -Wfatal-errors	# para compilar rápido
+CXXFLAGS2 := -std=c++98 -Wall -Wextra -Wfatal-errors	# para compilar rápido
 OPTFLAGS := -O2 -march=native	# optimizaciones
 DBGFLAGS := -g -fsanitize=address,undefined -DDEBUG
 FASTFLAGS := -O0 -DFAST_MODE
@@ -29,6 +29,11 @@ run: $(FILE)
 fast: $(FILE)-fast
 	@echo "Ejecutando $(FILE)..."
 	@./$(FILE)-fast
+
+# Regla para compilar y ejecutar con input
+inp: $(FILE)
+	@echo "Ejecutando $(FILE) con input..."
+	@./$(FILE) < input
 
 # Regla de compilación
 %: %.cpp
