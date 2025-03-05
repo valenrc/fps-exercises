@@ -9,4 +9,4 @@ int main() {
     else if (__cplusplus == 199711L) std::cout << "C++98";
     else std::cout << "pre-standard C++." << __cplusplus;
     std::cout << "\n";
-}
+}	

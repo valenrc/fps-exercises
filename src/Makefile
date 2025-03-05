@@ -1,31 +1,51 @@
-CXX = gcc
-CXXFLAGS = -std=c++23 -Wall -Wextra -O2 -DLOCAL -I.
-SOURCES = $(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
-EXECUTABLES = $(SOURCES:.cpp=.exe)
+# Compilador y flags
+CXX := g++
+CXXFLAGS := -std=c++98 -Wall -Wextra -Wshadow -Wconversion -Wfatal-errors -pedantic
+CXXFLAGS2 := -std=c++20 -Wall -Wextra -Wfatal-errors	# para compilar rápido
+OPTFLAGS := -O2 -march=native	# optimizaciones
+DBGFLAGS := -g -fsanitize=address,undefined -DDEBUG
+FASTFLAGS := -O0 -DFAST_MODE
 
-.PHONY: all clean run compiler-info
+# Si se usa DEBUG=1, cambia los flags de optimizacion por los de debug/sanitizers
+# ej DEBUG=1 make run file.cpp
+# para flags de optimizacion es solamente make run file.cpp
+ifeq ($(DEBUG), 1)
+    CXXFLAGS += $(DBGFLAGS)
+else
+    CXXFLAGS += $(OPTFLAGS)
+endif
 
-all: $(EXECUTABLES)
+.PHONY: run fast debug clean
 
-%.exe: %.cpp
-	@echo "Compiling $<..."
-	@$(CXX) $(CXXFLAGS) $< -o $@
+# Obtener el nombre del archivo sin la extensión cpp
+FILE := $(basename $(word 2, $(MAKECMDGOALS)))
 
+# Regla para compilar y ejecutar
+run: $(FILE)
+	@echo "Ejecutando $(FILE)..."
+	@./$(FILE)
+
+# compilar rapido (sin optimizaciones)
+fast: $(FILE)-fast
+	@echo "Ejecutando $(FILE)..."
+	@./$(FILE)-fast
+
+# Regla de compilación
+%: %.cpp
+	@echo "Compilando $<..."
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+# compilacion mas rapida
+%-fast: %.cpp
+	@echo "Compilando $<..."
+	$(CXX) $(CXXFLAGS2) $(FASTFLAGS) -o $@ $<
+
+# Evita errores cuando `make` intenta interpretar `file.o/cpp` como un objetivo
+%.cpp:
+	@:
+%:
+	@:
+
+# Limpia archivos compilados
 clean:
-	@echo "Cleaning up..."
-	@rm -f $(OBJECTS) $(EXECUTABLES)
-
-run:
-	@if [ -z "$(file)" ]; then \
-		echo "Usage: make run file=<filename>"; \
-	else \
-		$(MAKE) -s $(basename $(file)).exe; \
-		./$(basename $(file)).exe; \
-	fi
-
-compiler-info:
-	@echo "Compiler version:"
-	@$(CXX) --version
-	@echo "\nCompiler location:"
-	@which $(CXX)
+	rm -f *.o *.out *.exe $(FILE)
