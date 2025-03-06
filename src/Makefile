@@ -1,7 +1,7 @@
 # Compilador y flags
 CXX := g++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Wshadow -Wconversion -Wfatal-errors -pedantic
-CXXFLAGS2 := -std=c++98 -Wall -Wextra -Wfatal-errors	# para compilar rápido
+CXXFLAGS := -std=c++98 -Wall -Wextra -Wshadow -Wconversion -Wfatal-errors -pedantic -D_GLIBCXX_DEBUG
+CXXFLAGS2 := -std=c++98 -Wall -Wextra -Wfatal-errors	# para compilar mas rápido
 OPTFLAGS := -O2 -march=native	# optimizaciones
 DBGFLAGS := -g -fsanitize=address,undefined -DDEBUG
 FASTFLAGS := -O0 -DFAST_MODE
