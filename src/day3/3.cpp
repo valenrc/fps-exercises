@@ -1,3 +1,4 @@
+// POJ 2260 - Error correction
 #include <iostream>
 #include <vector>
 #include <algorithm>

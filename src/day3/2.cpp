@@ -1,3 +1,4 @@
+// POJ 1504 - Adding Reverssed Numbers
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -23,6 +24,38 @@ void print_vi(vi& v){
   cout << endl;
 }
 
+vi sumar(vi v1,vi v2){
+  vi v3;
+
+  // algoritmo para sumar - aritmetica basica
+  int carry = 0;
+  for(int i=v1.size()-1; i>=0; i--){
+    //cout << i << endl;
+    //cout << "sumando " << v1[i] << " + " << v2[i] << " + " << carry << endl;
+    int sum = v1[i] + v2[i] + carry;
+    if(sum >= 10){
+      carry = 1;
+      sum -= 10;
+    }else{
+      carry = 0;
+    }
+    //cout << "sum = " << sum << " carry = " << carry << endl;
+    v3.push_back(sum);
+  }
+
+  if(carry){
+    v3.push_back(carry);
+  }
+   
+  // eliminar los ceros que queden al principio
+  while(v3.size() > 1 && v3[0] == 0){
+    v3.erase(v3.begin());
+  }
+
+  // devolverlo por valor
+  return v3;
+}
+
 int main(){
   int n;
   cin >> n;
@@ -39,19 +72,20 @@ int main(){
     vector<int> v2(ml,0);
 
     forn(j, n1){
-      v1[n1-1-j] = s1[j] - '0';
+      v1[ml-1-j] = s1[j] - '0';
     }
     forn(j, n2){
-      v2[n2-1-j] = s2[j] - '0';
+      v2[ml-1-j] = s2[j] - '0';
     }
 
-    // iterar sobre v1 hasta que no tenga ningun leading zero
+    vector<int> v3 = sumar(v1, v2);
 
+    //print_vi(v3);
 
-    // sumar v1 y v2 y guardar el resultado en v3
-
-    print_vi(v1);
-    print_vi(v2);
+    // imprimir 
+    forn(j, v3.size()){
+      cout << v3[j];
+    }
 
     cout << endl;
   }

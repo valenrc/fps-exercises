@@ -1,3 +1,4 @@
+// POJ 1003 - Hangover
 #include <iostream>
 #include <vector>
 #include <algorithm>

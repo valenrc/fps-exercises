@@ -1,3 +1,4 @@
+// POJ 1552 - Doubles
 #include<iostream>
 #include<stdio.h>
 #include<vector>

@@ -1,3 +1,4 @@
+// POJ 2013 - Symmetric order
 #include <iostream>
 #include <vector>
 #include <algorithm>
