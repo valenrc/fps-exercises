@@ -1,0 +1,41 @@
+// following orders
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <utility>
+
+#include <queue>
+
+using namespace std;
+
+typedef vector<int> vi;
+typedef vector<string> vs;
+typedef vector<vi> vvi;
+
+// Implementaciones para grafos
+typedef pair<int,int> ii;
+typedef vector<ii> vii;
+
+#define forn(i,n)     for(int i=0;i<n;i++)
+#define fordn(i,d,n)  for(int i=d;i<n;i++)
+#define forall(i, c)  for (vector<int>::iterator i = (c).begin(); i != (c).end(); ++i)
+
+#define pb push_back
+
+void print_vi(vi& v){
+    forall(i,v) cout << *i << " ";
+    cout << endl;
+}
+
+int main(){
+  // input is terminated by end-of-file
+  string var;    // variables
+  while(getline(cin,var)){
+
+  }
+  return 0;
+}
