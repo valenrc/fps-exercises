@@ -1,5 +1,3 @@
-// following orders
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -9,6 +7,7 @@
 #include <utility>
 
 #include <queue>
+#include <map>
 
 using namespace std;
 
@@ -27,15 +26,11 @@ typedef vector<ii> vii;
 #define pb push_back
 
 void print_vi(vi& v){
-    forall(i,v) cout << *i << " ";
-    cout << endl;
+  forall(i,v) cout << *i << " ";
+  cout << endl;
 }
 
 int main(){
-  // input is terminated by end-of-file
-  string var;    // variables
-  while(getline(cin,var)){
 
-  }
   return 0;
 }
