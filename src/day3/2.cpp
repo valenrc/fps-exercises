@@ -1,4 +1,4 @@
-// POJ 1504 - Adding Reverssed Numbers
+// POJ 1504 - Adding Reversed Numbers
 #include <iostream>
 #include <vector>
 #include <algorithm>

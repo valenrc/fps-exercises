@@ -3,3 +3,4 @@ src/*.exe
 src/*.o
 modern-cpp/*.exe
 modern-cpp/*.o
+book.pdf
