@@ -1,6 +1,4 @@
-#ifndef COMP_H
-#define COMP_H
-
+// POJ 1852 - Ants
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -8,6 +6,7 @@
 #include <cstdio>
 #include <cstring>
 #include <utility>
+
 #include <sstream>
 
 #include <map>
@@ -29,9 +28,34 @@ typedef vector<ii> vii;
 
 #define pb push_back
 
-void print_vi(vi& v){
-  forall(i,v) cout << *i << " ";
-  cout << endl;
-}
+int main(){
+  ios_base::sync_with_stdio(false);
 
-#endif
+  int n; cin >> n; // n of test cases
+  forn(i,n){
+    int l; cin >> l;
+    int ants; cin >> ants;
+
+    int distMin = 0;
+    int distMax = 0;
+
+    forn(j,ants){
+      int pos; cin >> pos;
+
+      int x = min(pos, l-pos);
+      int y;
+      if(x == pos){
+        y = l-pos;
+      }else{
+        y = pos;
+      }
+
+      distMin = max(distMin, x);
+      distMax = max(distMax, y);
+    }
+
+    cout << distMin << " " << distMax << "\n";
+  }
+  // -.---..---
+  return 0;
+}

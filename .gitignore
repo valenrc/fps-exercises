@@ -5,3 +5,4 @@ modern-cpp/*.exe
 modern-cpp/*.o
 book.pdf
 src/output/d*/
+.idea

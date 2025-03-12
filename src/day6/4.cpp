@@ -1,6 +1,4 @@
-#ifndef COMP_H
-#define COMP_H
-
+// POJ 2234 - Matches Game
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -8,6 +6,7 @@
 #include <cstdio>
 #include <cstring>
 #include <utility>
+
 #include <sstream>
 
 #include <map>
@@ -29,9 +28,22 @@ typedef vector<ii> vii;
 
 #define pb push_back
 
-void print_vi(vi& v){
-  forall(i,v) cout << *i << " ";
-  cout << endl;
-}
+int main(){
+    int n;
 
-#endif
+    while(cin >> n){
+      int res = 0;
+      forn(i,n){
+        int x;
+        cin >> x;
+        res ^= x;
+      }
+      if(res == 0){
+        cout << "No" << endl;
+      }else{
+        cout << "Yes" << endl;
+      }
+
+    }
+    return 0;
+}
