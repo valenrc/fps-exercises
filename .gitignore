@@ -4,3 +4,4 @@ src/*.o
 modern-cpp/*.exe
 modern-cpp/*.o
 book.pdf
+src/output/d*/
