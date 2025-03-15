@@ -1,10 +1,14 @@
 # Compilador y flags
 CXX := g++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Wshadow -Wconversion -Wfatal-errors -pedantic -D_GLIBCXX_DEBUG
+CXXFLAGS  := -std=c++98 -Wall -Wextra -Wshadow -Wconversion -Wfatal-errors -pedantic -D_GLIBCXX_DEBUG
 CXXFLAGS2 := -std=c++98 -Wall -Wextra -Wfatal-errors	# para compilar mas rápido
-OPTFLAGS := -O2 -march=native	# optimizaciones
-DBGFLAGS := -g -fsanitize=address,undefined -DDEBUG
+OPTFLAGS  := -O2 -march=native	# optimizaciones
+DBGFLAGS  := -g -fsanitize=address,undefined -DDEBUG
 FASTFLAGS := -O0 -DFAST_MODE
+GDBFLAGS  := -g -O0 -DDEBUG
+
+# Intérprete de Python
+PYTHON := python
 
 # Si se usa DEBUG=1, cambia los flags de optimizacion por los de debug/sanitizers
 # ej DEBUG=1 make run file.cpp
@@ -15,7 +19,7 @@ else
     CXXFLAGS += $(OPTFLAGS)
 endif
 
-.PHONY: run fast debug clean
+.PHONY: run fast debug clean compare gdb
 
 # Obtener el nombre del archivo sin la extensión cpp
 FILE := $(basename $(word 2, $(MAKECMDGOALS)))
@@ -34,6 +38,22 @@ fast: $(FILE)-fast
 inp: $(FILE)
 	@echo "Ejecutando $(FILE) con input..."
 	@./$(FILE) < input
+
+# Regla para compilar, ejecutar con input, guardar output y comparar
+comp: $(FILE)
+	@mkdir -p output
+	@echo "Ejecutando $(FILE) con input y guardando output en output/o1..."
+	@./$(FILE) < input > output/o1
+	@$(PYTHON) output/compare.py --file1 output/o1 --file2 output/o2
+
+# Regla para compilar con flags de DEBUG y ejecutar con GDB usando el input
+gdb: $(FILE)-gdb
+	@echo "Iniciando GDB para $(FILE)"
+	@gdb -ex "run < input" ./$(FILE)-gdb
+
+%-gdb: %.cpp
+	@echo "Compilando $< para debug con GDB..."
+	$(CXX) $(CXXFLAGS) $(GDBFLAGS) -o $@ $<
 
 # Regla de compilación
 %: %.cpp

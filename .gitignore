@@ -6,3 +6,4 @@ modern-cpp/*.o
 book.pdf
 src/output/d*/
 .idea
+src/.gdb_history
