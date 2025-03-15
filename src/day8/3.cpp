@@ -21,7 +21,6 @@ typedef vector<vi> vvi;
 
 typedef long long ll;
 
-// Implementaciones para grafos
 typedef pair<int,int> ii;
 typedef vector<ii> vii;
 

@@ -16,7 +16,6 @@ using namespace std;
 typedef vector<int> vi;
 typedef vector<string> vs;
 typedef vector<vi> vvi;
-
 typedef pair<int,int> ii;
 typedef vector<ii> vii;
 
@@ -71,6 +70,8 @@ int main(){
     // contar la cant de muros que hay en la columna muros_en_i
     // borrar los muros que terminen mas a la derecha (ordenar walls por 'x2' descendente) hasta que muros_en_i <= k
     // actualizar la estructura de datos que cuenta los muros en las columnas
+    
+    // ESTA ESTRATEGIA NO FUNCIONA LOL
     int res = 0;
 
     for(int i=0; i<MAX; i++){

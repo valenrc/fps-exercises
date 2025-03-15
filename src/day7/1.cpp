@@ -16,8 +16,6 @@ using namespace std;
 typedef vector<int> vi;
 typedef vector<string> vs;
 typedef vector<vi> vvi;
-
-// Implementaciones para grafos
 typedef pair<int,int> ii;
 typedef vector<ii> vii;
 
